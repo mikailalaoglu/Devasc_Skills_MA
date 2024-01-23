@@ -1,0 +1,36 @@
+Today's date: Tue 23 Jan 2024 03:57:44 AM UTC
+START REST API CALL
+============
+FIRST API CALL
+============
+Curl PUT Command:
+curl -i -X PUT https://192.168.56.107/restconf/data/ietf-interfaces:interfaces/interface=Loopback199 -d "{
+  "ietf-interfaces:interface": {
+     "name": "Loopback199",
+     "description": "RESTCONF => Loopback199",
+     "type": "iana-if-type:softwareLoopback",
+     "enabled": true,
+     "ietf-ip:ipv4": {
+         "address": [
+             {
+                 "ip": "10.1.99.1",
+                 "netmask": "255.255.255.0"
+             }
+         ]
+     }
+ }
+}" -u cisco:cisco123! -H 'Accept: application/yang-data+json' -H 'Content-type: application/yang-data+json' --insecure
+Full Response (PUT):
+
+Status Code (PUT): 
+============
+SECOND API CALL
+============
+Curl GET Command:
+curl -i -X GET https://192.168.56.107/restconf/data/ietf-interfaces:interfaces -u cisco:cisco123! -H 'Accept: application/yang-data+json' -H 'Content-type: application/yang-data+json' --insecure
+Full Response (GET):
+
+Status Code (GET): 
+Interfaces: 
+============
+END REST API CALL
