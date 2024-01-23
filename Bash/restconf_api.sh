@@ -49,9 +49,6 @@ yangConfig='{
     # Perform the RESTCONF PUT request
     resp_put=$(curl -i -X PUT $api_url_put -d "$yangConfig" $basicauth $headers --insecure)
     
-    # Debug: Print the full response for troubleshooting
-    echo "Full Response (PUT):"
-    echo "$resp_put"
 
     # Extract and Output Status Code
     status_code_put=$(echo "$resp_put" | grep HTTP/ | awk '{print $2}')
