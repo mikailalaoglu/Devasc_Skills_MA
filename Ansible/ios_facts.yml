@@ -1,0 +1,26 @@
+---
+- name: Gather IOS version and IP addresses
+  hosts: router
+  gather_facts: no
+  connection: local
+
+  tasks:
+    - name: Retrieve IOS version
+      ios_command:
+        commands: show version | include IOS
+      register: ios_version
+
+    - name: Display IOS version
+      debug:
+        msg: "IOS version: {{ ios_version.stdout_lines[0] | regex_replace('\\s*IOS\\s+', '') }}"
+
+    - name: Retrieve IP addresses
+      ios_command:
+        commands: show ip interface brief | exclude unassigned
+      register: ip_addresses
+
+    - name: Display IP addresses
+      debug:
+        var: ip_addresses.stdout_lines
+
+
